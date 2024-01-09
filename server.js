@@ -14,15 +14,14 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage })
 
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.post('/contact/send-message', (req, res) => {
+app.post('/contact/send-message', upload.single('file'), (req, res) => {
 
-  const { author, sender, title, message } = req.body;
+  const { author, sender, title, message, file } = req.body;
 
-  if(author && sender && title && message && req.file) {
-    res.render('contact', { isSent: true, name: req.file.originalname, layout: 'main' });
+  if(author && sender && title && message && file) {
+    res.render('contact', { isSent: true, layout: 'main' });
   }
   else {
     res.render('contact', { isError: true, layout: 'main' });
