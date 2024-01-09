@@ -9,12 +9,20 @@ app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 
 app.set('view engine', '.hbs');
 app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'dark' }));
 
-app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.post('/contact/send-message', (req, res) => {
-  res.json(req.body);
+
+  const { author, sender, title, message, file } = req.body;
+
+  if(author && sender && title && message && file) {
+    res.render('contact', { isSent: true, layout: 'main' });
+  }
+  else {
+    res.render('contact', { isError: true, layout: 'main' });
+  }
+
 });
 
 app.get('/hello/:name', (req, res) => {
@@ -27,6 +35,10 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about', { layout: 'dark' })
+});
+
+app.get('/contact', (req, res) => {
+  res.render('contact', { layout: 'main' })
 });
 
 app.get('/info', (req, res) => {
