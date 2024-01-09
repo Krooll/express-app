@@ -1,6 +1,9 @@
 body {
-    background-color: #1a1a1a;
-    color: white;
+    background: #282c34;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px;
+    text-align: center;
 }
 
 body h2 {
@@ -9,5 +12,14 @@ body h2 {
 
 h1 {
     font-weight: lighter;
-    font-style: italic;
-}
+  }
+  
+  p {
+    color: #999;
+    font-size: 0.8rem;
+  }
+  
+  a {
+    color: #999;
+    font-size: 0.8rem;
+  }
