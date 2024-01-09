@@ -1,0 +1,13 @@
+body {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+body h2 {
+    display: none;
+}
+
+h1 {
+    font-weight: lighter;
+    font-style: italic;
+}
