@@ -18,10 +18,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 
 app.post('/contact/send-message', upload.single('file'), (req, res) => {
 
-  const { author, sender, title, message, file } = req.body;
+  const { author, sender, title, message } = req.body;
 
-  if(author && sender && title && message && file) {
-    res.render('contact', { isSent: true, layout: 'main' });
+  if(author && sender && title && req.file && message) {
+    res.render('contact', { isSent: true, name: req.file.originalname, layout: 'main' });
   }
   else {
     res.render('contact', { isError: true, layout: 'main' });
