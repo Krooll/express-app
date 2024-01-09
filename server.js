@@ -10,6 +10,8 @@ app.set('view engine', '.hbs');
 app.engine('hbs', hbs({ extname: 'hbs', layoutsDir: './layouts', defaultLayout: 'dark' }));
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 app.post('/contact/send-message', (req, res) => {
   res.json(req.body);
@@ -25,10 +27,6 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('about', { layout: 'dark' })
-});
-
-app.get('/contact', (req, res) => {
-  res.render('contact', { layout: 'main' })
 });
 
 app.get('/info', (req, res) => {
